@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Anggota - Perpustakaan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1e293b;
+            --primary-accent: #0f172a;
+            --accent-gold: #d97706;
+            --bg-main: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #334155;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            background: var(--card-bg);
+            border-radius: 16px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-accent));
+            color: white;
+            padding: 28px 32px;
+            border-bottom: 4px solid var(--accent-gold);
+        }
+
+        .header h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .content {
+            padding: 32px;
+        }
+
+        .table-container {
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 24px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f1f5f9;
+            color: var(--text-main);
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            padding: 14px 18px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        td {
+            padding: 16px 18px;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 0.95rem;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover {
+            background-color: #f8fafc;
+        }
+
+        .footer-nav {
+            display: flex;
+            justify-content: flex-end;
+            gap: 20px;
+        }
+
+        .nav-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>Daftar Anggota</h1>
+    </div>
+
+    <div class="content">
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 140px;">ID Anggota</th>
+                        <th>Nama Anggota</th>
+                        <th style="width: 140px; text-align: center;">Batas Pinjam</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="anggota : ${daftarAnggota}">
+                        <td style="color: var(--text-muted); font-weight: 500;" th:text="${anggota.idAnggota}">A001</td>
+                        <td style="font-weight: 600;" th:text="${anggota.nama}">Nama Anggota</td>
+                        <td style="text-align: center; font-weight: 600;" th:text="${anggota.batasPinjam}">3</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="footer-nav">
+            <a href="/buku" class="nav-link">&larr; Lihat Buku</a>
+            <a href="/pinjam" class="nav-link">Halaman Pinjam &rarr;</a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
